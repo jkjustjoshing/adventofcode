@@ -1,14 +1,14 @@
 'use strict';
 
+let fs = require('fs');
+
 let day = parseInt(process.argv[2]);
 let challenge = parseInt(process.argv[3]);
 
-process.stdin.setEncoding('utf8');
-process.stdin.on('readable', () => {
-  var chunk = process.stdin.read();
-  if (chunk !== null) {
-    // Run code on "chunk"
-    let result = require(`./solutions/day${day}.js`)[challenge - 1](chunk);
-    console.log('Result:', result);
+fs.readFile(`./input/${day}.txt`, 'utf8', function (err, data) {
+  if (err) {
+    return console.error(err);
   }
+  let result = require(`./solutions/day${day}.js`)[challenge - 1](data);
+  console.log('Result:', result);
 });
