@@ -136,6 +136,10 @@ class Output {
   numberHeld () {
     return this.chips;
   }
+
+  getChips () {
+    return this.chips;
+  }
 }
 
 class OutputContainer {
@@ -148,6 +152,10 @@ class OutputContainer {
       }
     }
     return this.outputs[number];
+  }
+
+  map<U>(callbackfn: (value: Output, index: number, array: Output[]) => U, thisArg?: any): U[] {
+    return this.outputs.map<U>(callbackfn, thisArg);
   }
 
   get length () {
@@ -197,7 +205,42 @@ module.exports = [
 
   // Challenge 2
   input => {
+    let outputs = new OutputContainer();
+    let bots = new BotContainer();
 
+    let instructions = getInstructions(input);
+    let firstRun = true, index = 0;
+
+    while(true) {
+      let instruction = instructions[index];
+      if (isValue(instruction)) {
+        if (firstRun) {
+          bots.getItem(instruction.bot).hold(instruction.value)
+        }
+      }
+      else {
+        let sourceBot = bots.getItem(instruction.bot);
+        if (sourceBot.isFull()) {
+          let vals = sourceBot.empty();
+          let high = (instruction.high.bot ? bots : outputs).getItem(instruction.high.number);
+          let low =   (instruction.low.bot ? bots : outputs).getItem(instruction.low.number);
+          high.hold(vals.high);
+          low.hold(vals.low);
+        }
+      }
+
+      if (index === instructions.length - 1) {
+        firstRun = false;
+        if (bots.allEmpty()) {
+          break;
+        }
+      }
+      index = (index + 1) % instructions.length;
+    }
+
+    return outputs.getItem(0).getChips()[0] *
+           outputs.getItem(1).getChips()[0] *
+           outputs.getItem(2).getChips()[0];
   }
 
 ];
