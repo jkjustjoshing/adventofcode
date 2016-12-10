@@ -18,5 +18,9 @@
   "homepage": "https://github.com/jkjustjoshing/adventofcode#readme",
   "dependencies": {
     "lodash": "^4.17.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.43",
+    "@types/node": "0.0.2"
   }
 }
