@@ -7,6 +7,7 @@ fs.readFile(`./input/${day}.txt`, 'utf8', function (err, data) {
   if (err) {
     return console.error(err);
   }
-  let result = require(`./solutions/day${day}.ts`)[challenge - 1](data);
+  let source = require(`./solutions/day${day}.ts`);
+  let result = (source.default ? source.default : source)[challenge - 1](data);
   console.log('Result:', result);
 });
