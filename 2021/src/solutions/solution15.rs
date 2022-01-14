@@ -23,6 +23,34 @@ pub fn part1(input: &str) -> u32 {
     grid.push(row_vector);
   }
 
+  return calculate(grid);
+}
+
+pub fn part2(input: &str) -> u32 {
+  let rows = input.trim().split("\n");
+
+  let mut grid = Vec::new();
+
+  for row in rows {
+    let mut row_vector = Vec::new();
+    for rep in 0..5 {
+      let cells = row.chars();
+      for cell in cells {
+        let cell_number = cell.to_digit(10).unwrap();
+        row_vector.push(Cell {
+          cell_number: ((cell_number + rep) % 9) + 1,
+          sum: 0,
+          visited: false
+        });
+      }
+    }
+    grid.push(row_vector);
+  }
+
+  return calculate(grid);
+}
+
+fn calculate(mut grid: Vec<Vec<Cell>>) -> u32 {
   let height = grid.len();
   let width = grid[0].len();
 

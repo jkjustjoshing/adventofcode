@@ -17,8 +17,8 @@ fn main() {
         let count = solution_1::part1(&input);
         println!("Answer is {}", count);
     } else if args[2] == "2" {
-        // let count = solution_1::part2(&input);
-        // println!("Answer is {}", count);
+        let count = solution_1::part2(&input);
+        println!("Answer is {}", count);
     } else {
         println!("Invalid puzzle part");
         process::exit(1)
