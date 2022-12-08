@@ -5,8 +5,6 @@ import (
 	"fmt"
 )
 
-var length = 14
-
 func puzzle6(scanner *bufio.Scanner) {
 	result := scanner.Scan()
 	if !result {
