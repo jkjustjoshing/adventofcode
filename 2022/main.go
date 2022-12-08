@@ -33,5 +33,7 @@ func main() {
 		puzzle5(scanner)
 	case "6":
 		puzzle6(scanner)
+	case "7":
+		puzzle7(scanner)
 	}
 }
