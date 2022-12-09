@@ -7,8 +7,14 @@ import (
 )
 
 func main() {
-	// puzzle1()
-	puzzleNumber := os.Args[1]
+
+	// By default run this day, to easily start debugging
+	puzzleNumber := "8"
+
+	// But if command line argument is passed, run that puzzle
+	if len(os.Args) > 1 {
+		puzzleNumber = os.Args[1]
+	}
 
 	f, err := os.Open("./" + puzzleNumber + ".txt")
 	if err != nil {
@@ -35,5 +41,7 @@ func main() {
 		puzzle6(scanner)
 	case "7":
 		puzzle7(scanner)
+	case "8":
+		puzzle8(scanner)
 	}
 }
