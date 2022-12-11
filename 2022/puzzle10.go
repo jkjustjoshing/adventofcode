@@ -45,7 +45,7 @@ func puzzle10(scanner *bufio.Scanner) {
 			if diff <= 1 {
 				fmt.Printf("#")
 			} else {
-				fmt.Printf(".")
+				fmt.Printf(" ")
 			}
 		}
 		fmt.Print("\n")
